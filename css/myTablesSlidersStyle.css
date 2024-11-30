@@ -1,0 +1,89 @@
+/* Margarita Garcia-Otero
+ GUI-1 HW4
+ File Name: css/myTablesSlidersStyle.css 
+ 
+ Display on page has one row with two columns.  
+ Second row is for tabs.
+ */
+
+    /*  Create 2 columns using flex. */
+    * {
+        box-sizing: border-box;
+    }
+    .row {
+        display: flex;
+    }
+    /* Create two equal columns that sits next to each other */
+    .column {
+        background-color:#bbb;   
+        flex: 30%;
+        padding: 50px;
+        
+        margin: 0 40px;
+    
+
+    }
+    /* styling for table and its elements from HW3
+       For HW4, made border for table hidden so it doesn't display when empty.
+    */
+    table {
+        border: hidden; 
+        
+    }
+    td, th {
+        border: 1px solid black; 
+        text-align:center;
+        background-color:blue; 
+        color:white;
+        padding: 8px;
+    }
+    table {
+        border-collapse: collapse;
+        max-width:100%;
+
+        display:block;
+        margin: 0 auto;
+        overflow-x: auto;
+        white-space:nowrap;
+    }
+    h1 {
+        text-align:center;
+        color:green;
+    }
+    label, input {
+        display:block;
+    }
+    .sticky-col {
+        position: sticky;
+        left: 0px;
+    }
+
+    /* styling for sliders and custom handles and textboxes 
+       custom handles css is unchanged from https://jqueryui.com/slider/#custom-handle-1 
+    */
+    #custom-handle-0, #custom-handle-1, #custom-handle-2, #custom-handle-3  {
+      width: 3em;
+      height: 1.6em;
+      top: 50%;
+      margin-top: -.8em;
+      text-align: center;
+      line-height: 1.6em;
+    }
+    /* added styling for sliders and textboxes */
+
+    #slider_Xmin, #slider_Xmax, #slider_Ymin, #slider_Ymax {
+        width:50%;
+        margin: 0, auto;
+        display:inline-block;
+    }
+    #tb_Xmin, #tb_Xmax,  #tb_Ymin, #tb_Ymax {
+        display: inline;
+        border-radius: 15px;
+        width: 50px;
+        margin-left: 100px;
+        text-align: center;
+    }
+    #tb_Xmin:focus, #tb_Xmax:focus, #tb_Ymin:focus, #tb_Ymax:focus {
+        border: solid blue 4px;   
+    }
+

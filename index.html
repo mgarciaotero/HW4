@@ -1,0 +1,148 @@
+<!-- 
+Margarita Garcia-Otero
+ GUI-1 HW4
+ File Name: index.html
+
+
+I did not use jquery plug in validation.  The data entry checks on the textboxes
+is the same as HW3. (Note: move the cursor out of textbox to trigger onblur event when
+textbox loses focus. Min/Max order are checked as well.  On error, message is displayed
+and textbox background color changes). Sliders have range from -50 to 50 and moving slider handle updates textbox.
+
+I fixed my previous problem in HW3 so now the table will not generate unless all input is valid.
+
+I relied heavily on https://jqueryui.com/tabs/ source code and modified it to meet my needs.
+(I removed the use of a dialog box and added the code to display an X to delete tab).
+
+I experimented with adding a checkbox to each tab but had issues in display and then in removing
+several tabs at the same time so I took out that code from the tab display.
+
+The javascript to generate the table from HW3 is unchanged here so the table doesn't have sticky
+cells.  (Tabs appear at bottom of the page as in example shown in class.)
+I didn't make any tabs active to start so you have to click to see contents.
+(I added a line above the table data in the tab which says "Table Num added.")
+
+After experimenting with the display of the tabs, I ended up with many icons displayed but
+the first two icons after the "Tab no" label both close the tab.  (I didn't know how to remove 
+the other icons so I left them alone).
+
+ For the sliders, I relied on https://jqueryui.com/slider/#custom-handle and displayed the
+ slider value on the handle so I could see the slide and change events.
+
+ I have two css files and two js files.
+
+ 
+ Resources:
+
+ w3schools for general reference
+ 
+ https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_js_tab_events2&stacked=h
+ https://jqueryui.com/slider/#custom-handle-1 (Started with source here and modified it.)
+ https://jqueryui.com/tabs/ (Started with source here, removed dialog box, and modified for HW4)
+ https://jqueryui.com/tabs/#manipulation 
+
+ https://www.geeksforgeeks.org/jquery-ui-slider-slide-event/
+ -->
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Slider, Tables and Tabs</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <!-- external style sheet for tabs -->
+    <link rel="stylesheet" type="text/css" href="css/myTabsStyle.css">
+
+    <!-- external style sheet for tables, sliders, and textboxes -->
+    <link rel="stylesheet" type="text/css" href="css/myTablesSlidersStyle.css">
+
+</head>
+<body>
+
+<!-- First row has 2 columns (Data input and Multiplication table)-->
+<div class="row">
+    <div class="column">
+        <h2>Column and Row Ranges Input</h2>
+        <h5>(slide or enter integer -50 to 50 inclusive, min must be LT or EQ to max)</h5> 
+        <h5>(move cursor out of textbox to lose focus and check entry onblur)</h5> 
+        <div id="input">
+        
+            <hr>
+            <p>X Min: <input name="number" id="tb_Xmin" type="text" onfocusout="isValid(0)">
+                <span id="entry0">valid/invalid?</span >
+            </p>
+            <div id="slider_Xmin">
+                <div id="custom-handle-0" class="ui-slider-handle"></div>
+            </div> 
+            <br><br>
+            <p>X Max: <input name="number" id="tb_Xmax" type="text" onfocusout="isValid(1)">
+                <span id="entry1">valid/invalid?</span >
+            </p>
+            <div id="slider_Xmax">
+                <div id="custom-handle-1" class="ui-slider-handle"></div>
+            </div> 
+            <hr>
+            
+            <p>Y Min: <input name="number" id="tb_Ymin" type="text" onfocusout="isValid(2)">
+                <span id="entry2">valid/invalid?</span >
+            </p>
+            <div id="slider_Ymin">
+                <div id="custom-handle-2" class="ui-slider-handle"></div>
+            </div> 
+            <br><br>
+            <p>Y Max: <input name="number" id="tb_Ymax" type="text" onfocusout="isValid(3)">
+                <span id="entry3">valid/invalid?</span >
+            </p>
+            <div id="slider_Ymax">
+                <div id="custom-handle-3" class="ui-slider-handle"></div>
+            </div> 
+            <hr>
+            <br>
+            <button type="button" onclick="generateTable()">Generate Table</button>
+            <br><br>
+            <button id="add_tab">Add Tab</button>
+
+        </div>
+    </div>
+
+    <div id = "col2" class="column">
+        <h2>Multiplication Table</h2>
+        <br><br>
+       
+        <div id = "display_div">
+            <table id="myTable">
+
+            </table>
+        </div>
+    </div>
+
+</div> <!-- end of 1st row -->
+
+
+<!-- All tab content goes in this div. -->
+<div id="tabs">
+    <ul> 
+    </ul>
+
+</div> 
+
+
+<!-- load libraries for bootstrap, jQuery, and UI -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+ 
+
+<!-- external javascript files -->
+<script type="text/javascript" src="js/myTableSlidersScript.js"></script> 
+<script type="text/javascript" src="js/myTabsScript.js"></script>
+
+
+</body>
+</html>
